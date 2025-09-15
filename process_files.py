@@ -20,12 +20,25 @@ def process_statement(filepath, config):
     
     # Read the specific sheet, skip the top rows, and treat the first row of data as having no header.
     # The 'skiprows' parameter is zero-indexed, so we subtract 1.
-    df = pd.read_excel(
-        filepath,
-        sheet_name=sheet_name,
-        skiprows=start_row - 1,
-        header=None
-    )
+    try:
+        df = pd.read_excel(
+            filepath,
+            sheet_name=sheet_name,
+            skiprows=start_row - 1,
+            header=None
+        )
+    except Exception as e:
+        # Fallback: some BOG files may have sheet name "Statement of Account"
+        try:
+            df = pd.read_excel(
+                filepath,
+                sheet_name='Statement of Account',
+                skiprows=start_row - 1,
+                header=None
+            )
+        except Exception:
+            # Re-raise original exception to preserve the fail-fast behavior
+            raise e
 
     # Create a new, clean DataFrame to hold our processed data
     processed_df = pd.DataFrame()
@@ -133,8 +146,9 @@ def process_statement(filepath, config):
     if processed_df.empty:
         return pd.DataFrame() # Return empty if no valid data rows are found
 
-    # Add source file name
+    # Add source file name and source account
     processed_df['Source File'] = os.path.basename(filepath)
+    processed_df['Source Account'] = config.get('source_account', '')
 
     # Standardize Date format
     processed_df['Date'] = pd.to_datetime(processed_df['Date'], errors='coerce').dt.date

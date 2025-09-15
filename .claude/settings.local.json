@@ -3,7 +3,9 @@
     "allow": [
       "Bash(rm:*)",
       "Bash(python:*)",
-      "Bash(del test_rules.py)"
+      "Bash(del test_rules.py)",
+      "Bash(venvScripts:*)",
+      "Bash(pip install:*)"
     ],
     "deny": []
   }

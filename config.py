@@ -11,22 +11,25 @@ INTERNAL_ACCOUNTS = [
     'GE83TB7398736010100052', # BORIS TBC
 ]
 
-# UPDATED Configuration with sheet name, start row, and column letter mappings
+# UPDATED Configuration with sheet name, start row, column letter mappings, and source account mapping
 FILE_CONFIGS = {
     'GIRCHI TBC GEL': {
         'sheet_name': 'GE04TB7772536080100003-GEL', # Corrected from your list
         'start_row': 3,
-        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account' }
+        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account', 'K': 'Partner Name'},
+        'source_account': 'GE04TB7772536080100003'
     },
     'GIRCHI TBC USD': { # Assumed sheet name based on your description
         'sheet_name': 'GE21TB7772545167800001-USD',
         'start_row': 3,
-        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account' }
+        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account', 'K': 'Partner Name'},
+        'source_account': 'GE21TB7772545167800001'
     },
     'BT TBC GEL': {
         'sheet_name': 'GE60TB7791136080100005-GEL',
         'start_row': 3,
-        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account' }
+        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account', 'K': 'Partner Name'},
+        'source_account': 'GE60TB7791136080100005'
     },
     'BT BOG': {
         'sheet_name': 'Statement of Account',
@@ -36,7 +39,8 @@ FILE_CONFIGS = {
             'condition_column': 'E',  # Check if column E has content
             'if_has_content': 'L',    # Use column L if E has content
             'if_empty': 'Q'           # Use column Q if E is empty
-        }
+        },
+        'source_account': 'GE74BG0000000101146034'
     },
     'TV36 BOG': {
         'sheet_name': 'Statement of Account',
@@ -46,17 +50,20 @@ FILE_CONFIGS = {
             'condition_column': 'E',  # Check if column E has content
             'if_has_content': 'L',    # Use column L if E has content
             'if_empty': 'Q'           # Use column Q if E is empty
-        }
+        },
+        'source_account': 'GE78BG0000000604676551'
     },
     'BORIS TBC': {
         'sheet_name': 'GE83TB7398736010100052-GEL',
         'start_row': 3,
-        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account' }
+        'column_map': { 'A': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'F': 'Balance', 'J': 'Partner Account', 'K': 'Partner Name'},
+        'source_account': 'GE83TB7398736010100052'
     },
     'BORIS BOG': {
         'sheet_name': 'ტრანზაქციები',
         'start_row': 2,
-        'column_map': { 'H': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'J': 'Partner Account' }
+        'column_map': { 'H': 'Date', 'B': 'Original Description', 'D': 'Paid Out', 'E': 'Paid In', 'J': 'Partner Account' },
+        'source_account': 'GE59BG0000000533997843'
     },
 }
 
